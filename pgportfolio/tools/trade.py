@@ -43,7 +43,7 @@ def calculate_pv_after_commission(w1, w0, commission_rate):
     @:param commission_rate: rate of commission fee, proportional to the transaction cost
     """
     mu0 = 1
-    mu1 = 1 - 2*commission_rate + commission_rate ** 2
+    mu1 = commission_rate*(np.sum(abs(w0[1:] - mu0*w1[1:])))
     while abs(mu1-mu0) > 1e-10:
         mu0 = mu1
         mu1 = (1 - commission_rate * w0[0] -
